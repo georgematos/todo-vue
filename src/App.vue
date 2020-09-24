@@ -18,27 +18,18 @@
         </div>
       </form>
       <div class="todo-list">
-        <div class="tile flex-centered" v-for="todo in todos" :key="todo.id">
-          <div class="tile-icon">
-            <i class="icon icon-time centered"></i>
-          </div>
-          <div class="tile-content">
-            <div class="tile-subtitle">{{todo.description}}</div>
-          </div>
-          <div class="tile-action">
-            <button class="btn btn-link">Concluir</button>
-            <button class="btn btn-link">
-              <span class="text-error">Remover</span>
-            </button>
-          </div>
-        </div>
+        <Todo :todo="t" v-for="t in todos" :key="t.id" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Todo from './components/Todo'
 export default {
+  components: {
+    Todo
+  },
   data() {
     return {
       todos: [],
@@ -56,6 +47,7 @@ export default {
         description: this.todo.description,
         checked: false,
       });
+      this.todo.description = ''
     },
   },
 };
