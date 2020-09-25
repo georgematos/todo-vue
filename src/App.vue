@@ -59,7 +59,8 @@ export default {
     },
     removeTodo(t) {
       const index = this.todos.indexOf(t);
-      this.todos.splice(index, 1)
+      // this.todos.splice(index, 1)
+      this.$delete(this.todos, index)
     }
   },
 };
