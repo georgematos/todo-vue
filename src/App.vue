@@ -13,12 +13,17 @@
             class="form-input"
             placeholder="Novo todo"
             v-model="todo.description"
+            required
           />
           <button class="btn btn-primary input-group-btn">Adicionar</button>
         </div>
       </form>
       <div class="todo-list">
-        <Todo :todo="t" v-for="t in todos" :key="t.id" />
+        <Todo 
+          :todo="t" v-for="t in todos" :key="t.id" 
+          @toggle="toggleTodo(t)"
+          @remove="removeTodo(t)"
+        />
       </div>
     </div>
   </div>
@@ -49,6 +54,13 @@ export default {
       });
       this.todo.description = ''
     },
+    toggleTodo(t) {
+      t.checked = !t.checked
+    },
+    removeTodo(t) {
+      const index = this.todos.indexOf(t);
+      this.todos.splice(index, 1)
+    }
   },
 };
 </script>
